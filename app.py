@@ -128,10 +128,10 @@ libros = [
 # Ruta para la página principal
 @app.route('/')
 def home():
-    return "<h1>Bienvenido a la API de libros. Visita /books para ver la lista de libros.</h1>"
+    return "Bienvenido a la API de libros. Visita /books para ver la lista de libros."
 
-# Ruta para listar los libros
-@app.route('/books')
+# Ruta para devolver libros en formato JSON
+@app.route('/books', methods=['GET'])
 def list_books():
     return jsonify(libros)
 
