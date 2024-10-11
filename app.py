@@ -125,14 +125,15 @@ libros = [
    
 ]
 
-
+# Ruta para la página principal
 @app.route('/')
 def home():
-    html_content = "<h1>Lista de libros</h1><ul>"
-    for libro in libros:
-        html_content += f'<li><a href="{libro["link"]}" target="_blank">{libro["name"]}</a></li>'
-    html_content += "</ul>"
-    return html_content
+    return "<h1>Bienvenido a la API de libros. Visita /books para ver la lista de libros.</h1>"
+
+# Ruta para listar los libros
+@app.route('/books')
+def list_books():
+    return jsonify(libros)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
