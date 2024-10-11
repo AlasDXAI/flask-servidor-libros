@@ -125,9 +125,16 @@ libros = [
    
 ]
 
+
+# Ruta para la página principal
+@app.route('/')
+def home():
+    return "Bienvenido a la API de libros. Visita /books para ver la lista de libros."
+
+# Ruta para listar los libros
 @app.route('/books')
 def list_books():
-    return jsonify(libros)  # Devolver la lista de libros como JSON
+    return jsonify(libros)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # Usar el puerto asignado por Render
