@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -124,9 +124,10 @@ libros = [
 
    
 ]
+
 @app.route('/books')
 def list_books():
-    return {"message": "Lista de libros"}
+    return jsonify(libros)  # Devolver la lista de libros como JSON
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # Usar el puerto asignado por Render
