@@ -126,16 +126,14 @@ libros = [
 ]
 
 
-# Ruta para la página principal
 @app.route('/')
 def home():
-    return "Bienvenido a la API de libros. Visita /books para ver la lista de libros."
-
-# Ruta para listar los libros
-@app.route('/books')
-def list_books():
-    return jsonify(libros)
+    html_content = "<h1>Lista de libros</h1><ul>"
+    for libro in libros:
+        html_content += f'<li><a href="{libro["link"]}" target="_blank">{libro["name"]}</a></li>'
+    html_content += "</ul>"
+    return html_content
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))  # Usar el puerto asignado por Render
-    app.run(host='0.0.0.0', port=port)        # Escuchar en todas las interfaces
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
